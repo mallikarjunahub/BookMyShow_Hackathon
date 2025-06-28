@@ -159,12 +159,6 @@ router.post("/lockseats", async (req, res) => {
       status: "AVAILABLE",
     });
 
-    if (availableSeats.length !== seatNumbers.length) {
-      return res
-        .status(409)
-        .json({ message: "Some seats are already locked or booked" });
-    }
-
     const result = await seat.updateMany(
       {
         seatNumber: { $in: seatNumbers },
